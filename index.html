@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're Invited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@500;600;700&family=Great+Vibes&family=Rozha+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-theme="seemantham">
+  <div class="invite-wrap">
+    <div id="invite" class="card" style="display:none">
+      <!-- ===== Floral corners (pastel themes) ===== -->
+      <svg class="corner tl deco-floral" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M6 94 C6 50 22 22 60 12 C40 26 34 44 40 56 C48 40 66 34 82 40 C64 46 56 60 58 74 C70 62 84 62 94 68" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="86" r="4.5" fill="currentColor"/></svg>
+      <svg class="corner tr deco-floral" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M6 94 C6 50 22 22 60 12 C40 26 34 44 40 56 C48 40 66 34 82 40 C64 46 56 60 58 74 C70 62 84 62 94 68" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="86" r="4.5" fill="currentColor"/></svg>
+      <svg class="corner bl deco-floral" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M6 94 C6 50 22 22 60 12 C40 26 34 44 40 56 C48 40 66 34 82 40 C64 46 56 60 58 74 C70 62 84 62 94 68" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="86" r="4.5" fill="currentColor"/></svg>
+      <svg class="corner br deco-floral" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M6 94 C6 50 22 22 60 12 C40 26 34 44 40 56 C48 40 66 34 82 40 C64 46 56 60 58 74 C70 62 84 62 94 68" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="86" r="4.5" fill="currentColor"/></svg>
+
+      <!-- ===== Kolam corners (Seemantham) ===== -->
+      <svg class="corner tl deco-indian" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M8 64 A56 56 0 0 1 64 8" stroke="#b8860b" stroke-width="2.4"/><path d="M18 62 A44 44 0 0 1 62 18" stroke="#9e1b23" stroke-width="1.6"/><circle cx="10" cy="70" r="3" fill="#b8860b"/><circle cx="70" cy="10" r="3" fill="#b8860b"/><path d="M30 42 c-6 -6 -6 -16 4 -18 c-2 10 8 12 14 6 c-6 12 -12 12 -18 12 Z" fill="#c2185b"/><circle cx="40" cy="40" r="2.4" fill="#f4820a"/></svg>
+      <svg class="corner tr deco-indian" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M8 64 A56 56 0 0 1 64 8" stroke="#b8860b" stroke-width="2.4"/><path d="M18 62 A44 44 0 0 1 62 18" stroke="#9e1b23" stroke-width="1.6"/><circle cx="10" cy="70" r="3" fill="#b8860b"/><circle cx="70" cy="10" r="3" fill="#b8860b"/><path d="M30 42 c-6 -6 -6 -16 4 -18 c-2 10 8 12 14 6 c-6 12 -12 12 -18 12 Z" fill="#c2185b"/><circle cx="40" cy="40" r="2.4" fill="#f4820a"/></svg>
+      <svg class="corner bl deco-indian" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M8 64 A56 56 0 0 1 64 8" stroke="#b8860b" stroke-width="2.4"/><path d="M18 62 A44 44 0 0 1 62 18" stroke="#9e1b23" stroke-width="1.6"/><circle cx="10" cy="70" r="3" fill="#b8860b"/><circle cx="70" cy="10" r="3" fill="#b8860b"/><path d="M30 42 c-6 -6 -6 -16 4 -18 c-2 10 8 12 14 6 c-6 12 -12 12 -18 12 Z" fill="#c2185b"/><circle cx="40" cy="40" r="2.4" fill="#f4820a"/></svg>
+      <svg class="corner br deco-indian" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M8 64 A56 56 0 0 1 64 8" stroke="#b8860b" stroke-width="2.4"/><path d="M18 62 A44 44 0 0 1 62 18" stroke="#9e1b23" stroke-width="1.6"/><circle cx="10" cy="70" r="3" fill="#b8860b"/><circle cx="70" cy="10" r="3" fill="#b8860b"/><path d="M30 42 c-6 -6 -6 -16 4 -18 c-2 10 8 12 14 6 c-6 12 -12 12 -18 12 Z" fill="#c2185b"/><circle cx="40" cy="40" r="2.4" fill="#f4820a"/></svg>
+
+      <!-- ===== Mango-leaf toran (Seemantham) ===== -->
+      <svg class="toran deco-indian" viewBox="0 0 640 46" fill="none" aria-hidden="true">
+        <defs>
+          <symbol id="mleaf" viewBox="-10 0 20 44"><path d="M0 2 C -9 12 -9 30 0 42 C 9 30 9 12 0 2 Z" fill="#2f8f3e"/><path d="M0 2 C -5 14 -5 30 0 42" stroke="#1c6b2b" stroke-width="1.4"/></symbol>
+        </defs>
+        <path d="M8 6 Q320 16 632 6" stroke="#7a4a24" stroke-width="2.2"/>
+        <use href="#mleaf" x="18" y="6" width="20" height="44"/>
+        <use href="#mleaf" x="62" y="6" width="20" height="44"/>
+        <use href="#mleaf" x="106" y="6" width="20" height="44"/>
+        <use href="#mleaf" x="150" y="7" width="20" height="44"/>
+        <use href="#mleaf" x="194" y="7" width="20" height="44"/>
+        <use href="#mleaf" x="238" y="8" width="20" height="44"/>
+        <use href="#mleaf" x="282" y="9" width="20" height="44"/>
+        <use href="#mleaf" x="326" y="9" width="20" height="44"/>
+        <use href="#mleaf" x="370" y="9" width="20" height="44"/>
+        <use href="#mleaf" x="414" y="8" width="20" height="44"/>
+        <use href="#mleaf" x="458" y="8" width="20" height="44"/>
+        <use href="#mleaf" x="502" y="7" width="20" height="44"/>
+        <use href="#mleaf" x="546" y="6" width="20" height="44"/>
+        <use href="#mleaf" x="590" y="6" width="20" height="44"/>
+        <use href="#mleaf" x="622" y="6" width="20" height="44"/>
+      </svg>
+
+      <div id="hero" class="hero" style="display:none"></div>
+
+      <div class="card-body">
+        <!-- Header motifs -->
+        <svg class="motif deco-floral" viewBox="0 0 120 84" fill="none" aria-hidden="true"><path d="M18 54 h44 V30 a22 22 0 0 0 -44 0 Z" stroke="currentColor" stroke-width="2.4"/><path d="M14 54 h52 l8 -14 a10 10 0 0 0 -9 -6 H40" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M62 54 v-18 l14 -8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="30" cy="66" r="8" stroke="currentColor" stroke-width="2.4"/><circle cx="56" cy="66" r="8" stroke="currentColor" stroke-width="2.4"/><path d="M92 18 l2.4 6 6 2.4 -6 2.4 -2.4 6 -2.4 -6 -6 -2.4 6 -2.4 Z" fill="currentColor"/></svg>
+
+        <!-- Kalash (Purna Kumbham) image motif for Seemantham -->
+        <img class="motif-img deco-indian" src="kalash.png" alt="Purna Kumbham kalash" />
+
+        <p class="eyebrow" id="eyebrow">You're Invited</p>
+        <h1 class="title script" id="title">Baby Shower</h1>
+        <p class="subtitle" id="subtitle" style="display:none"></p>
+
+        <!-- Dividers -->
+        <svg class="flourish deco-floral" viewBox="0 0 200 24" fill="none" aria-hidden="true"><path d="M2 12 H74" stroke="currentColor" stroke-width="1.6"/><path d="M198 12 H126" stroke="currentColor" stroke-width="1.6"/><path d="M100 4 C92 8 92 16 100 20 C108 16 108 8 100 4 Z" fill="currentColor"/><circle cx="82" cy="12" r="2.2" fill="currentColor"/><circle cx="118" cy="12" r="2.2" fill="currentColor"/></svg>
+        <svg class="flourish deco-indian" viewBox="0 0 200 26" fill="none" aria-hidden="true"><path d="M4 13 H72M196 13 H128" stroke="#b8860b" stroke-width="1.6"/><circle cx="80" cy="13" r="3" fill="#f4820a"/><circle cx="120" cy="13" r="3" fill="#f4820a"/><path d="M100 3 C94 7 94 12 100 13 C106 12 106 7 100 3 Z" fill="#c2185b"/><path d="M100 23 C94 19 94 14 100 13 C106 14 106 19 100 23 Z" fill="#c2185b"/><path d="M90 13 C95 9 98 11 100 13 C98 15 95 17 90 13 Z" fill="#e91e8c"/><path d="M110 13 C105 9 102 11 100 13 C102 15 105 17 110 13 Z" fill="#e91e8c"/><circle cx="100" cy="13" r="3" fill="#ffd23f"/></svg>
+
+        <div class="detail-block">
+          <div class="detail-label">In honor of</div>
+          <p class="honor" id="honor">—</p>
+        </div>
+
+        <div class="detail-block">
+          <div class="detail-label">When</div>
+          <p class="detail-value big" id="dateText">—</p>
+          <p class="detail-value" id="timeText" style="display:none"></p>
+        </div>
+
+        <div class="detail-block">
+          <div class="detail-label">Where</div>
+          <p class="detail-value big" id="venueText">—</p>
+          <p class="detail-value" id="addressText" style="display:none"></p>
+        </div>
+
+        <p class="message" id="message" style="display:none"></p>
+
+        <div class="btn-row">
+          <a id="mapBtn" class="btn btn-ghost" target="_blank" rel="noopener" style="display:none">📍 View Map</a>
+          <a id="calBtn" class="btn btn-ghost" target="_blank" rel="noopener" style="display:none">📅 Add to Calendar</a>
+        </div>
+
+        <div class="rsvp-section" id="rsvpSection" style="display:none">
+          <svg class="flourish deco-floral" viewBox="0 0 200 24" fill="none" aria-hidden="true"><path d="M2 12 H74" stroke="currentColor" stroke-width="1.6"/><path d="M198 12 H126" stroke="currentColor" stroke-width="1.6"/><path d="M100 4 C92 8 92 16 100 20 C108 16 108 8 100 4 Z" fill="currentColor"/></svg>
+          <svg class="flourish deco-indian" viewBox="0 0 200 26" fill="none" aria-hidden="true"><path d="M4 13 H72M196 13 H128" stroke="#b8860b" stroke-width="1.6"/><circle cx="80" cy="13" r="3" fill="#f4820a"/><circle cx="120" cy="13" r="3" fill="#f4820a"/><path d="M90 13 C95 9 98 11 100 13 C98 15 95 17 90 13 Z" fill="#e91e8c"/><path d="M110 13 C105 9 102 11 100 13 C102 15 105 17 110 13 Z" fill="#e91e8c"/><circle cx="100" cy="13" r="3.4" fill="#c2185b"/></svg>
+          <h2 class="rsvp-heading">Kindly RSVP</h2>
+          <p class="rsvp-sub" id="rsvpSub">We'd love to know if you can join us</p>
+
+          <a id="rsvpBtn" class="btn btn-primary" target="_blank" rel="noopener" style="display:none"></a>
+
+          <iframe id="rsvpEmbed" class="rsvp-embed" style="display:none" title="RSVP form" loading="lazy"></iframe>
+
+          <form id="rsvpForm" class="rsvp-form" style="display:none">
+            <p class="small-note" id="rsvpDupNote" style="display:none;text-align:center;background:var(--bg2);padding:8px;border-radius:8px;">You've already RSVP'd from this device. Submitting again will update your response.</p>
+            <div class="fld"><label>Your name</label><input name="name" required placeholder="Your full name" /></div>
+            <div class="fld"><label>Mobile number <span style="font-weight:400;opacity:.7">(so we don't double-count)</span></label><input name="mobile" required inputmode="tel" placeholder="e.g. 98765 43210" /></div>
+            <div class="fld">
+              <label>Will you attend?</label>
+              <div class="choice-row">
+                <label><input type="radio" name="attending" value="Yes" required><span>Yes 🎉</span></label>
+                <label><input type="radio" name="attending" value="Maybe"><span>Maybe</span></label>
+                <label><input type="radio" name="attending" value="No"><span>Can't make it</span></label>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px">
+              <div class="fld" style="flex:1"><label>Adults</label><input name="adults" type="number" min="0" value="1" /></div>
+              <div class="fld" style="flex:1"><label>Kids</label><input name="kids" type="number" min="0" value="0" /></div>
+            </div>
+            <div class="fld"><label>A message / blessings for the parents 💐</label><textarea name="message" placeholder="Write something sweet..."></textarea></div>
+            <button type="submit" class="btn btn-primary" style="width:100%">Send RSVP</button>
+            <p class="small-note" id="formStatus" style="text-align:center"></p>
+          </form>
+
+          <div class="rsvp-thankyou" id="rsvpThanks">Thank you! Your RSVP has been received 💐</div>
+        </div>
+
+        <p class="host" id="host" style="display:none"></p>
+        <p class="footer-note">With love &amp; blessings · Seemantham Invitation</p>
+      </div>
+    </div>
+
+    <div id="empty" class="empty-state card">
+      <div class="card-body">
+        <h1 class="title script" style="font-size:44px">Nothing here yet</h1>
+        <p class="subtitle" style="display:block">This is the invitation page. To create an invite, open
+          <a href="admin.html">the admin page</a>, fill in your details, and generate a shareable link.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/shared.js"></script>
+  <script>
+    (function () {
+      function getData() {
+        const hash = location.hash || "";
+        const m = hash.match(/[#&]i=([^&]+)/);
+        if (m) return decodeData(m[1]);
+        const q = new URLSearchParams(location.search);
+        if (q.get("i")) return decodeData(q.get("i"));
+        return null;
+      }
+      function setText(id, text) {
+        const el = document.getElementById(id);
+        if (text && String(text).trim()) { el.textContent = text; el.style.display = "block"; }
+        else { el.style.display = "none"; }
+      }
+      function to12h(t) {
+        if (!/^\d{1,2}:\d{2}$/.test(t)) return t;
+        let [h, m] = t.split(":").map(Number);
+        const ap = h >= 12 ? "PM" : "AM";
+        h = h % 12; if (h === 0) h = 12;
+        return `${h}:${String(m).padStart(2, "0")} ${ap}`;
+      }
+
+      const data = getData();
+      if (!data) { document.getElementById("empty").style.display = "block"; return; }
+
+      document.getElementById("empty").style.display = "none";
+      applyTheme(data.theme || "seemantham");
+      document.getElementById("invite").style.display = "block";
+      document.title = (data.honor ? data.honor + " — " : "") + (data.title || "Baby Shower");
+
+      if (data.hero) {
+        const h = document.getElementById("hero");
+        h.style.backgroundImage = `url('${data.hero.replace(/'/g, "%27")}')`;
+        h.style.display = "block";
+      }
+
+      setText("eyebrow", data.eyebrow || "You're Invited");
+      document.getElementById("title").textContent = data.title || "Baby Shower";
+      setText("subtitle", data.subtitle);
+      setText("honor", data.honor);
+
+      document.getElementById("dateText").textContent = formatEventDate(data.date) || "Date to be announced";
+      const tp = [];
+      if (data.startTime) tp.push(to12h(data.startTime));
+      if (data.endTime) tp.push(to12h(data.endTime));
+      setText("timeText", tp.join(" – "));
+
+      setText("venueText", data.venue || "Venue to be announced");
+      setText("addressText", data.address);
+      setText("message", data.message);
+      setText("host", data.host ? "Hosted with love by " + data.host : "");
+
+      const mapUrl = data.mapUrl || buildMapsUrl(data.address || data.venue);
+      if (mapUrl && (data.address || data.venue)) { const b = document.getElementById("mapBtn"); b.href = mapUrl; b.style.display = "inline-block"; }
+      const calUrl = buildCalendarUrl(data);
+      if (calUrl) { const c = document.getElementById("calBtn"); c.href = calUrl; c.style.display = "inline-block"; }
+
+      const mode = data.rsvpMode || (data.sheetEndpoint ? "sheet" : (data.rsvpUrl ? "link" : ""));
+      const section = document.getElementById("rsvpSection");
+      if (mode === "embed" && data.rsvpUrl) {
+        section.style.display = "block";
+        const f = document.getElementById("rsvpEmbed"); f.src = toEmbedUrl(data.rsvpUrl); f.style.display = "block";
+      } else if (mode === "sheet" && data.sheetEndpoint) {
+        section.style.display = "block";
+        document.getElementById("rsvpForm").style.display = "block";
+        wireCustomForm(data.sheetEndpoint);
+      } else if (mode === "link" && data.rsvpUrl) {
+        section.style.display = "block";
+        const r = document.getElementById("rsvpBtn");
+        r.href = data.rsvpUrl; r.textContent = data.rsvpLabel || "RSVP Now"; r.style.display = "inline-block";
+      }
+
+      function wireCustomForm(endpoint) {
+        const form = document.getElementById("rsvpForm");
+        const rsvpKey = "aievite_rsvp_" + (data.title || "") + "|" + (data.honor || "");
+        // If this device already RSVP'd, gently let them know it will update.
+        if (localStorage.getItem(rsvpKey)) {
+          document.getElementById("rsvpDupNote").style.display = "block";
+        }
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const status = document.getElementById("formStatus");
+          status.textContent = "Sending...";
+          const fd = new FormData(form);
+          fd.append("event", data.title || "Baby Shower");
+          fd.append("honor", data.honor || "");
+          const params = new URLSearchParams();
+          for (const [k, v] of fd.entries()) params.append(k, v);
+          fetch(endpoint, { method: "POST", mode: "no-cors",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: params.toString(),
+          }).then(function () {
+            try { localStorage.setItem(rsvpKey, "1"); } catch (e) {}
+            form.style.display = "none";
+            document.getElementById("rsvpThanks").classList.add("show");
+          }).catch(function () { status.textContent = "Something went wrong — please try again."; });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
