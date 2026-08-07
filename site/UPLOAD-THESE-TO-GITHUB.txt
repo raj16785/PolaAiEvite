@@ -1,0 +1,3 @@
+Drag EVERYTHING inside this 'site' folder into your GitHub repo:
+  index.html, css/, js/, kalash.png, and the photo(s) you use (IMG_0082.JPG / IMG_0093.JPG).
+Do NOT include admin.html — keep it private. Full steps in SETUP.md.
