@@ -92,19 +92,37 @@ function applyTheme(themeKey, root) {
    Data travels in the URL. We JSON-stringify, then base64 with a
    URL-safe alphabet so it survives WhatsApp/SMS links.
 ------------------------------------------------------------- */
+// Compact single-letter keys keep the encoded link short.
+var KEYMAP = { title:"t", honor:"h", subtitle:"s", date:"d", startTime:"a",
+  endTime:"b", venue:"v", address:"r", hero:"g", bgImage:"i", bgDark:"k",
+  glass:"l", message:"m", host:"o", theme:"e", rsvpMode:"q", rsvpUrl:"u",
+  sheetEndpoint:"n", rsvpLabel:"c", eyebrow:"w", mapUrl:"p" };
+var REVMAP = {}; Object.keys(KEYMAP).forEach(function (k) { REVMAP[KEYMAP[k]] = k; });
+
 function encodeData(obj) {
-  const json = JSON.stringify(obj);
+  // Map to short keys and drop empty values to shrink the URL.
+  var shortObj = {};
+  Object.keys(obj).forEach(function (k) {
+    var v = obj[k];
+    if (v === undefined || v === null || v === "") return;
+    shortObj[KEYMAP[k] || k] = v;
+  });
+  var json = JSON.stringify(shortObj);
   // encodeURIComponent handles unicode (names in any language) before btoa
-  const b64 = btoa(unescape(encodeURIComponent(json)));
+  var b64 = btoa(unescape(encodeURIComponent(json)));
   return b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
 function decodeData(str) {
   try {
-    let b64 = str.replace(/-/g, "+").replace(/_/g, "/");
+    var b64 = str.replace(/-/g, "+").replace(/_/g, "/");
     while (b64.length % 4) b64 += "=";
-    const json = decodeURIComponent(escape(atob(b64)));
-    return JSON.parse(json);
+    var json = decodeURIComponent(escape(atob(b64)));
+    var raw = JSON.parse(json);
+    // Expand short keys back to full names (old long-key links still work).
+    var out = {};
+    Object.keys(raw).forEach(function (k) { out[REVMAP[k] || k] = raw[k]; });
+    return out;
   } catch (e) {
     return null;
   }
