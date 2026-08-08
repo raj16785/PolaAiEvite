@@ -477,9 +477,23 @@ body.has-bg .card::after {
 body.has-bg .hero,
 body.has-bg .toran,
 body.has-bg .card-body { position: relative; z-index: 2; }
-/* Keep text crisp over the see-through glass */
-body.has-bg .card-body { text-shadow: 0 1px 2px rgba(255, 255, 255, 0.45); }
-body.has-bg .title,
-body.has-bg .honor { text-shadow: 0 1px 3px rgba(255, 255, 255, 0.55); }
+/* Keep text readable over the see-through glass — even on a light photo.
+   1) darken the faint muted tones; 2) give every glyph a soft white cushion
+   plus a hairline dark edge (text-shadow inherits to all card text). */
+body.has-bg .subtitle,
+body.has-bg .rsvp-sub,
+body.has-bg .message,
+body.has-bg .host,
+body.has-bg .detail-value,
+body.has-bg .footer-note { color: var(--ink); }
+body.has-bg .message,
+body.has-bg .subtitle,
+body.has-bg .rsvp-sub { font-weight: 600; }
+body.has-bg .card-body {
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.92),
+    0 0 9px rgba(255, 255, 255, 0.6),
+    0 1px 1px rgba(0, 0, 0, 0.20);
+}
 /* Breathing room so the photo shows above/below the card */
 body.has-bg .invite-wrap { padding-top: 46px; padding-bottom: 80px; }
