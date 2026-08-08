@@ -96,7 +96,7 @@ function applyTheme(themeKey, root) {
 var KEYMAP = { title:"t", honor:"h", subtitle:"s", date:"d", startTime:"a",
   endTime:"b", venue:"v", address:"r", hero:"g", bgImage:"i", bgDark:"k",
   glass:"l", message:"m", host:"o", theme:"e", rsvpMode:"q", rsvpUrl:"u",
-  sheetEndpoint:"n", rsvpLabel:"c", eyebrow:"w", mapUrl:"p" };
+  sheetEndpoint:"n", rsvpLabel:"c", eyebrow:"w", mapUrl:"p", photoEndpoint:"f" };
 var REVMAP = {}; Object.keys(KEYMAP).forEach(function (k) { REVMAP[KEYMAP[k]] = k; });
 
 function encodeData(obj) {

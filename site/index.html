@@ -125,6 +125,21 @@
           <div class="rsvp-thankyou" id="rsvpThanks">Thank you! Your RSVP has been received 💐</div>
         </div>
 
+        <!-- Post-event photo collection (auto-opens at event end) -->
+        <div class="rsvp-section" id="photosSection" style="display:none">
+          <svg class="flourish deco-floral" viewBox="0 0 200 24" fill="none" aria-hidden="true"><path d="M2 12 H74" stroke="currentColor" stroke-width="1.6"/><path d="M198 12 H126" stroke="currentColor" stroke-width="1.6"/><path d="M100 4 C92 8 92 16 100 20 C108 16 108 8 100 4 Z" fill="currentColor"/></svg>
+          <svg class="flourish deco-indian" viewBox="0 0 200 26" fill="none" aria-hidden="true"><path d="M4 13 H72M196 13 H128" stroke="#b8860b" stroke-width="1.6"/><circle cx="80" cy="13" r="3" fill="#f4820a"/><circle cx="120" cy="13" r="3" fill="#f4820a"/><path d="M90 13 C95 9 98 11 100 13 C98 15 95 17 90 13 Z" fill="#e91e8c"/><path d="M110 13 C105 9 102 11 100 13 C102 15 105 17 110 13 Z" fill="#e91e8c"/><circle cx="100" cy="13" r="3.4" fill="#c2185b"/></svg>
+          <h2 class="rsvp-heading">📸 Share Your Photos</h2>
+          <p class="rsvp-sub">Thank you for celebrating with us! Please add your photos to our shared album.</p>
+          <form id="photoForm" class="rsvp-form">
+            <div class="fld"><label>Your name <span style="font-weight:400;opacity:.7">(optional)</span></label><input name="uploader" placeholder="Your name" /></div>
+            <div class="fld"><label>Choose photos from your device</label><input id="photoFiles" type="file" accept="image/*" multiple /></div>
+            <button type="submit" class="btn btn-primary" style="width:100%">⬆ Upload photos</button>
+            <p class="small-note" id="photoStatus" style="text-align:center"></p>
+          </form>
+          <div class="rsvp-thankyou" id="photoThanks">Thank you! Your photos have been added 💐</div>
+        </div>
+
         <p class="host" id="host" style="display:none"></p>
         <p class="footer-note">With love &amp; blessings · Seemantham Invitation</p>
       </div>
@@ -213,9 +228,21 @@
       const calUrl = buildCalendarUrl(data);
       if (calUrl) { const c = document.getElementById("calBtn"); c.href = calUrl; c.style.display = "inline-block"; }
 
+      // After the event ends, switch RSVP -> photo collection.
+      function eventEndTime(d) {
+        if (!d.date) return null;
+        const t = (d.endTime && /^\d{1,2}:\d{2}$/.test(d.endTime)) ? d.endTime : "23:59";
+        const dt = new Date(d.date + "T" + t + ":00");
+        return isNaN(dt) ? null : dt;
+      }
+      const _end = eventEndTime(data);
+      const photosLive = data.photoEndpoint && (/[?&]photos=1/.test(location.search) || (_end && Date.now() >= _end.getTime()));
       const mode = data.rsvpMode || (data.sheetEndpoint ? "sheet" : (data.rsvpUrl ? "link" : ""));
       const section = document.getElementById("rsvpSection");
-      if (mode === "embed" && data.rsvpUrl) {
+      if (photosLive) {
+        document.getElementById("photosSection").style.display = "block";
+        wirePhotoUploader(data.photoEndpoint);
+      } else if (mode === "embed" && data.rsvpUrl) {
         section.style.display = "block";
         const f = document.getElementById("rsvpEmbed"); f.src = toEmbedUrl(data.rsvpUrl); f.style.display = "block";
       } else if (mode === "sheet" && data.sheetEndpoint) {
@@ -252,6 +279,99 @@
             form.style.display = "none";
             document.getElementById("rsvpThanks").classList.add("show");
           }).catch(function () { status.textContent = "Something went wrong — please try again."; });
+        });
+      }
+
+      function readBase64(file) {
+        return new Promise(function (res, rej) {
+          var r = new FileReader();
+          r.onload = function () { res(String(r.result).split(",")[1]); };
+          r.onerror = rej;
+          r.readAsDataURL(file);
+        });
+      }
+      // Upload ONE file and read the server's real reply (hard confirmation).
+      // Apps Script returns JSON with CORS on a simple form-urlencoded POST.
+      function uploadOne(endpoint, file, uploader, tries) {
+        if (file.size > 25 * 1024 * 1024) return Promise.resolve({ ok: false, big: true });
+        return readBase64(file).then(function (b64) {
+          var body = new URLSearchParams();
+          body.append("kind", "photo");
+          body.append("filename", file.name || ("photo_" + Date.now() + ".jpg"));
+          body.append("mimeType", file.type || "image/jpeg");
+          body.append("uploader", uploader);
+          body.append("data", b64);
+          function attempt(n) {
+            return fetch(endpoint, { method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+              body: body.toString() })
+              .then(function (r) { return r.json(); })
+              .then(function (j) {
+                if (j && j.result === "success") return { ok: true };
+                throw new Error((j && j.error) || "server");
+              })
+              .catch(function (err) {
+                if (n > 1) return new Promise(function (res) { setTimeout(res, 1500); })
+                  .then(function () { return attempt(n - 1); });
+                return { ok: false, error: String(err) };
+              });
+          }
+          return attempt(tries || 3);
+        }).catch(function () { return { ok: false }; });
+      }
+
+      function wirePhotoUploader(endpoint) {
+        var form = document.getElementById("photoForm");
+        var status = document.getElementById("photoStatus");
+        var thanks = document.getElementById("photoThanks");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var input = document.getElementById("photoFiles");
+          var files = input.files ? Array.prototype.slice.call(input.files) : [];
+          if (!files.length) { status.textContent = "Please choose one or more photos."; return; }
+          var uploader = (form.querySelector("[name=uploader]").value || "").trim();
+          var btn = form.querySelector("button");
+          btn.disabled = true;
+
+          var total = files.length, done = 0, failed = 0, big = 0, started = 0;
+          var running = true;
+          function guard(ev) { if (running) { ev.preventDefault(); ev.returnValue = ""; return ""; } }
+          window.addEventListener("beforeunload", guard);
+          function tick() {
+            status.textContent = "Uploaded " + done + " of " + total +
+              (failed ? " · " + failed + " to retry" : "") + "\u2026 (keep this page open)";
+          }
+          tick();
+
+          // Upload a few in parallel so it finishes faster (helps if backgrounded).
+          var idx = 0, CONC = Math.min(3, files.length);
+          function next() {
+            if (idx >= files.length) return Promise.resolve();
+            var f = files[idx++];
+            return uploadOne(endpoint, f, uploader, 3).then(function (r) {
+              if (r.ok) done++; else if (r.big) big++; else failed++;
+              tick();
+              return next();
+            });
+          }
+          var pool = [];
+          for (var w = 0; w < CONC; w++) pool.push(next());
+          Promise.all(pool).then(function () {
+            running = false;
+            window.removeEventListener("beforeunload", guard);
+            if (failed === 0 && big === 0) {
+              form.style.display = "none";
+              thanks.textContent = "Thank you! All " + done + " photo" + (done === 1 ? "" : "s") +
+                " uploaded and confirmed \ud83d\udc90";
+              thanks.classList.add("show");
+            } else {
+              btn.disabled = false;
+              var msg = done + " of " + total + " uploaded & confirmed.";
+              if (failed) msg += " " + failed + " didn\u2019t go through \u2014 tap Upload again to retry.";
+              if (big) msg += " " + big + " too large (over 25 MB) and skipped.";
+              status.textContent = msg;
+            }
+          });
         });
       }
     })();
